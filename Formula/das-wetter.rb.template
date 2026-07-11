@@ -1,0 +1,21 @@
+class DasWetter < Formula
+  desc "Fast, scriptable terminal weather CLI"
+  homepage "https://github.com/REPLACE_OWNER/das-wetter"
+  url "https://github.com/REPLACE_OWNER/das-wetter/archive/refs/tags/v0.1.0.tar.gz"
+  sha256 "REPLACE_WITH_TARBALL_SHA256"
+
+  depends_on "go" => :build
+
+  def install
+    ENV["CGO_ENABLED"] = "0"
+    system "go", "build", "-trimpath", "-ldflags=-s -w -buildid=", "-o", "weather", "."
+
+    bin.install "weather"
+    bin.install_symlink "weather" => "das-wetter"
+    bin.install_symlink "weather" => "das"
+  end
+
+  test do
+    assert_match "Fast, clean, scriptable terminal weather", shell_output("#{bin}/weather --help")
+  end
+end

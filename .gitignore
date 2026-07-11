@@ -1,0 +1,5 @@
+/weather
+*.test
+.DS_Store
+.build/
+dist/
