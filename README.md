@@ -74,42 +74,22 @@ CGO_ENABLED=0 go build -trimpath -ldflags="-s -w -buildid=" -o weather .
 
 ## Install with Homebrew
 
-Homebrew installs third-party apps through a tap. The included
-`Formula/das-wetter.rb.template` is ready for a personal tap once this project
-has a GitHub repository and a tagged release.
+The official tap is [`ConnrCodes/homebrew-das-wetter`](https://github.com/ConnrCodes/homebrew-das-wetter).
+Install and launch it with:
 
-1. Push the source repository, for example
-   `https://github.com/YOUR_USER/das-wetter`, then create a release tag:
+```sh
+brew tap ConnrCodes/das-wetter
+brew install ConnrCodes/das-wetter/das-wetter
+das wetter
+```
 
-   ```sh
-   git tag v0.1.0
-   git push origin v0.1.0
-   ```
+The formula provides `weather`, `das-wetter`, and `das` aliases. To update an
+existing installation:
 
-2. Create a second public repository named `homebrew-das-wetter`. In that
-   repository, copy the template into `Formula/das-wetter.rb`, replace
-   `REPLACE_OWNER`, and fill in the release archive checksum:
-
-   ```sh
-   mkdir -p Formula
-   cp ../Das\ Wetter/Formula/das-wetter.rb.template Formula/das-wetter.rb
-   curl -L https://github.com/YOUR_USER/das-wetter/archive/refs/tags/v0.1.0.tar.gz \
-     | shasum -a 256
-   ```
-
-   Commit and push the formula to the tap repository.
-
-3. Install and launch it:
-
-   ```sh
-   brew tap YOUR_USER/das-wetter
-   brew install YOUR_USER/das-wetter/das-wetter
-   das wetter
-   ```
-
-   The formula provides `weather`, `das-wetter`, and `das` aliases. For later
-   releases, push a new version tag, update the formula URL and checksum, then
-   run `brew update && brew upgrade das-wetter`.
+```sh
+brew update
+brew upgrade das-wetter
+```
 
 ## Usage
 
